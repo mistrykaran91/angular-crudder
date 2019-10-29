@@ -1,6 +1,6 @@
 {
   "name": "angular-crudder",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A schematic project which generates angular CRUD code based on the valid JSON file provided.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -11,6 +11,10 @@
   "keywords": [
     "schematics"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mistrykaran91/angular-crudder.git"    
+  },
   "author": "Karan Mistry",
   "license": "MIT",
   "schematics": "./src/collection.json",
