@@ -59,4 +59,4 @@ Each properties of the JSON file should be the FieldName which you want to be di
 | `required`        | If the field is required.           |
 | `enum`         | If the type is radio, you can use this property to display the possible values of the radio |
 
-In case you want to see example of the [Sample](LINK) JSON file.
+In case you want to see example of the [Sample](https://github.com/mistrykaran91/angular-crudder/blob/master/samples/schema.json) JSON file.
