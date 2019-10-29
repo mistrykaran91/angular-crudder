@@ -1,0 +1,90 @@
+{
+    "bootstrap": {
+        "newLineClass": "clearfix",
+        "list": {
+            "mainDivClass": "card",
+            "mainHeaderClass": "card-header",
+            "mainBodyClass": "card-body",
+            "tableDivClass": "table-responsive",
+            "tableClass": [
+                "table",
+                "table-bordered"
+            ],
+            "controlClass": "form-control",
+            "actionButtonClass": "btn btn-link",
+            "emptyTableMessage": "No Records Found",
+            "headerActions": {
+                "label": "Actions",
+                "edit": {
+                    "label": "Edit",
+                    "class": "btn btn-link"
+                },
+                "delete": {
+                    "label": "Delete",
+                    "class": "btn btn-link",
+                    "clickFunctionName": "onDeleteClick"
+                }
+            },
+            "actions":{
+                "add":{
+                    "label": "Add",
+                    "class": "btn btn-primary my-2",
+                    "clickFunctionName": "onAddClick"
+                }
+            }
+        },
+        "details": {
+            "mainDivClass": "card",
+            "mainHeaderClass": "card-header",
+            "mainBodyClass": "card-body container",
+            "footerClass": "card-footer",
+            "footer": {
+                "edit": {
+                    "label": "Edit",
+                    "class": "btn btn-primary mx-2",
+                    "clickFunctionName": "onEditClick"
+                },
+                "delete": {
+                    "label": "Delete",
+                    "class": "btn btn-danger mx-2",
+                    "clickFunctionName": "onDeleteClick"
+                },
+                "cancel": {
+                    "label": "Cancel",
+                    "class": "btn btn-secondary mx-2",
+                    "clickFunctionName": "onCancelClick"
+                }
+            },
+            "rowDiv": "row",
+            "fieldClass": [
+                "col-lg-3",
+                "col-md-3",
+                "col-xs-12",
+                "form-group"
+            ],
+            "labelClass": "form-control"
+        },
+        "edit": {
+            "mainDivClass": "card",
+            "mainHeaderClass": "card-header",
+            "mainBodyClass": "card-body container",
+            "rowClass": "col-lg-3 col-md-3 col-xs-12 form-group",
+            "requiredClass": "required",
+            "rowDiv": "row",
+            "controlClass": "form-control",
+            "actions": {
+                "save": {
+                    "label": "Save",
+                    "class": "btn btn-primary mx-2",
+                    "clickFunctionName": "onSaveClick"
+                },
+                "cancel": {
+                    "label": "Cancel",
+                    "class": "btn btn-secondary mx-2",
+                    "clickFunctionName": "onCancelClick"
+                }
+            },
+            "radioClass": "radio-inline  mx-2"
+        }
+    }
+}

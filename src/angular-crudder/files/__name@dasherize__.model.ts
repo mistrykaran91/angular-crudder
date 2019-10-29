@@ -1,0 +1,1 @@
+<%= generateModel(schemaPath,name) %>

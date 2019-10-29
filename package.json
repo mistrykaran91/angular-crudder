@@ -1,0 +1,27 @@
+{
+  "name": "angular-crudder",
+  "version": "0.0.1",
+  "description": "A schematic project which generates angular CRUD code based on the valid JSON file provided.",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "schematic": "schematics .:angular-crudder --name=customer",
+    "schematic-build": "schematics .:angular-crudder --name=customer --dry-run=false --schemaPath=H:/schema.json --changeDetection=false"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "Karan Mistry",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^7.2.3",
+    "@angular-devkit/schematics": "^7.2.3",
+    "@types/jasmine": "^2.6.0",
+    "@types/node": "^8.0.31",
+    "jasmine": "^2.8.0",
+    "jsdom": "^15.1.1",
+    "prettier": "^1.18.2",
+    "typescript": "^2.5.2"
+  }
+}

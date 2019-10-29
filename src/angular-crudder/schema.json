@@ -1,0 +1,39 @@
+{
+    "id": "AngularCrudderSchematic",
+    "title": "Angular Crudder Schematics",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the component"
+        },
+        "path": {
+            "type": "string",
+            "description": "Specifies the path to create the files under",
+            "default" :""
+        },
+        "spec": {
+            "type": "string",
+            "description": "Specifies if a spec file is generated",
+            "default": "true"
+        },
+        "schemaPath":{
+            "type":"string",
+            "description" :"Specifies the path of schema of which form and template is to be generated"
+        },
+        "changeDetection" : {
+            "type": "string",
+            "description": "Specifies if a change detection property to be added in component metadata",
+            "default" : "false"
+        },
+        "theme": {
+            "type": "string",
+            "description": "Look and feel of which UI framework E.g, bootstrap,material,etc",
+            "default":"bootstrap"
+        }
+    },
+    "required": [
+        "name",
+        "schemaPath"
+    ]
+}
