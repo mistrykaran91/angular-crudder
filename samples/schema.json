@@ -1,0 +1,56 @@
+{
+    "customerId": {
+        "type": "text",
+        "isId": true
+    },
+    "firstName": {
+        "type": "text",
+        "maxlength": 10,
+        "required": true
+    },
+    "lastName": {
+        "type": "text",
+        "maxlength": 10,
+        "required": true
+    },
+    "age": {
+        "type": "number",
+        "required": true
+    },
+    "gender": {
+        "type": "radio",
+        "required": true,
+        "enum": [
+            "Male",
+            "Female"
+        ]
+    },
+    "contactDetails": {
+        "type": "group",
+        "property": {
+            "phone": {
+                "type": "text"
+            },
+            "email": {
+                "type": "text"
+            },
+            "address": {
+                "type": "group",
+                "property": {
+                    "street1": {
+                        "type": "text"
+                    },
+                    "street2": {
+                        "type": "text"
+                    },
+                    "landmark": {
+                        "type": "text"
+                    },
+                    "pincode": {
+                        "type": "text"
+                    }
+                }
+            }
+        }
+    }
+}
