@@ -30,6 +30,11 @@
             "type": "string",
             "description": "Look and feel of which UI framework E.g, bootstrap,material,etc",
             "default":"bootstrap"
+        },
+        "project":{
+            "type":"string",
+            "description": "Specifies the project to run the schematic in",
+            "default": "defaultProject"
         }
     },
     "required": [

@@ -29,3 +29,7 @@ export function prettifyFiles(): Rule {
     return tree;
   }
 }
+
+export function formatTypeScriptFile(content: any) {
+  return prettier.format(content, PRETTIER_CONFIG.typescript);
+}

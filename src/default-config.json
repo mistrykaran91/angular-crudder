@@ -73,6 +73,7 @@
             "rowDiv": "row",
             "controlClass": "form-control",
             "actions": {
+                "rowClass":"col-lg-12 col-md-12 col-xs-12",
                 "save": {
                     "label": "Save",
                     "class": "btn btn-primary mx-2",

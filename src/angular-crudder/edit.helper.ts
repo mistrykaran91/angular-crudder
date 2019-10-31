@@ -54,9 +54,9 @@ export function generateComponentTemplate(schemaPath: string, name: string, them
 
         generateHTML(fileContent, rowDiv, edit, name, themeObject);
 
-        const div = generateDiv(edit.rowClass);
-
         const { save, cancel } = edit.actions;
+
+        const div = generateDiv(edit.actions.rowClass);
 
         const saveButton = generateButton(save.label, save.class, `${save.clickFunctionName}()`, save.label, `mainForm?.invalid`);
         div.appendChild(saveButton);

@@ -1,1 +1,4 @@
 # Ignores TypeScript files, but keeps definitions.
+#angular dummy files
+angular.json
+src/app/

@@ -46,7 +46,7 @@ Navigation in component's routerLink are written based on the below routes:-
 
 You have to change the api-url in the service file then your CRUD will work.
 
-NOTE:-Currently, it does not import in your app.module files and routing file you have to import it manually.
+NOTE:- Currently, it will add imports in your app.module files and routing file you have to import it manually.
 #### JSON File properties
 
 Each properties of the JSON file should be the FieldName which you want to be displayed in the form. The FieldName values should contain the metadata about that field. Below are the accepted the value metadata:-
