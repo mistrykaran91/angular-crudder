@@ -1,4 +1,4 @@
-import { strings } from "@angular-devkit/core";
+import { strings, relative, normalize } from "@angular-devkit/core";
 import { SchematicsException } from "@angular-devkit/schematics";
 
 import { PropertyWithPath } from "../models";
@@ -84,21 +84,63 @@ export function replaceSyntax(content: string) {
     return content;
 }
 
-export function getIDFieldName(schema: any){
+export function getIDFieldName(schema: any) {
     let idFieldName = 'id';
 
     Object.entries(schema)
-    .map((props) => {
-      const key = props[0];
-      const property: any = props[1];
+        .map((props) => {
+            const key = props[0];
+            const property: any = props[1];
 
-      if (property && property.isId === true) {
-        idFieldName = key;
-        return idFieldName;
-      }
-    });
-    
-    return idFieldName;   
+            if (property && property.isId === true) {
+                idFieldName = key;
+                return idFieldName;
+            }
+        });
+
+    return idFieldName;
+}
+
+export function getProject(options: any, workspace: any) {
+    options.project = (options.project === 'defaultProject')
+        ? workspace.defaultProject : options.project;
+
+    return workspace.projects[options.project];
+}
+
+
+
+/**
+ * Copied from angular CLI github:-
+ * Build a relative path from one file path to another file path.
+ */
+export function buildRelativePath(from: string, to: string): string {
+    from = normalize(from);
+    to = normalize(to);
+
+    // Convert to arrays.
+    const fromParts = from.split('/');
+    const toParts = to.split('/');
+
+    // Remove file names (preserving destination)
+    fromParts.pop();
+    const toFileName = toParts.pop();
+
+    const relativePath = relative(normalize(fromParts.join('/') || '/'),
+        normalize(toParts.join('/') || '/'));
+    let pathPrefix = '';
+
+    // Set the path prefix for same dir or child dir, parent dir starts with `..`
+    if (!relativePath) {
+        pathPrefix = '.';
+    } else if (!relativePath.startsWith('.')) {
+        pathPrefix = `./`;
+    }
+    if (pathPrefix && !pathPrefix.endsWith('/')) {
+        pathPrefix += '/';
+    }
+
+    return pathPrefix + (relativePath ? relativePath + '/' : '') + toFileName;
 }
 
 // API Schematics Helper Methods.

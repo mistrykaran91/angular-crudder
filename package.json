@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "schematic": "schematics .:angular-crudder --name=customer --schemaPath=H:/schema.json",
+    "schematic": "schematics .:angular-crudder --name=customer --schemaPath=H:/schema.json --module=customer.module",
     "schematic-build": "schematics .:angular-crudder --name=customer --dry-run=false --schemaPath=H:/schema.json --changeDetection=false"
   },
   "keywords": [

@@ -35,6 +35,11 @@
             "type":"string",
             "description": "Specifies the project to run the schematic in",
             "default": "defaultProject"
+        },
+        "module":{
+            "type":"string",
+            "description": "Specifies the module name in which imports are to be added.",
+            "default": "root"
         }
     },
     "required": [
