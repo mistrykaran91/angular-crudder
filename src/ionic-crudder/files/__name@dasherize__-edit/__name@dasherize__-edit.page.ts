@@ -1,5 +1,5 @@
-import { Component, OnInit, <% if(changeDetection === 'true') { %>ChangeDetectionStrategy  <% } %> } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Component, OnInit,  <% if(changeDetection === 'true') { %>ChangeDetectionStrategy  <% } %> } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class <%= classify(name) %>EditPage implements OnInit {
 
   constructor(private store: Store<Reducers.<%= classify(name) %>State>,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder) { }
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     
@@ -30,14 +30,16 @@ export class <%= classify(name) %>EditPage implements OnInit {
 
     this.store
       .select(Selectors.getCurrent<%= classify(name) %>)
-      .subscribe(<%= camelize(name) %> => (this.<%= camelize(name) %> = <%= camelize(name) %>));
-
-      if (this.<%= camelize(name) %>) {
-        this.createForm(this.<%= camelize(name) %>);
-      }    
+      .subscribe(<%= camelize(name) %> => {
+        this.<%= camelize(name) %> = <%= camelize(name) %>;
+        if (this.<%= camelize(name) %>) {
+          this.<%= camelize(name) %>Form = this.createMainForm();
+          this.<%= camelize(name) %>Form.patchValue(this.<%= camelize(name) %>);
+        }    
+      });
   }
 
-  <%= generateForm(schemaPath) %>
+  <%= generateForm(schemaPath,name) %>
 
   save(): void {
     if (this.<%= camelize(name) %>Form.invalid) {

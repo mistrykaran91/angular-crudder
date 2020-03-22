@@ -18,6 +18,9 @@ import {
   getUpdateMethod
 } from '../utility';
 import { intialiseModel } from '../angular-crudder/export';
+import { generateDetailTemplate } from '../angular-crudder/ionic-detail.helper';
+import { generateIonicEditTemplate } from '../angular-crudder/ionic-edit.helper';
+import { generateEditForm } from '../angular-crudder/edit-form-group.helper';
 
 export {
   generateForm,
@@ -36,5 +39,8 @@ export {
   getUpdateMethod,
   updateModule,
   updateRouteFile,
-  intialiseModel
+  intialiseModel,
+  generateDetailTemplate,
+  generateIonicEditTemplate,
+  generateEditForm
 };
