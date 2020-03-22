@@ -12,31 +12,38 @@ export function updateModule(options: any, workspace: any): Rule {
     return (tree: Tree, _context: SchematicContext): Tree => {
 
         const project = getProject(options, workspace);
-        //const listPath = `\\${project.sourceRoot}\\${project.prefix}\\${options.name}\\${options.name}-list\\${options.name}-list.component.ts`;        
 
-        if (options.module !== 'root' && options.module !== 'app.module') {
+        const filePath = getModuleFilePath(options, project);
 
-            const path = `./${project.root}/${project.sourceRoot}/${project.prefix}/`;
-            const srcFiles = getAllFiles(path);
-            const filePath = srcFiles.find((r: string) => r.match(new RegExp(options.module, 'g')));
-
-            if (!isNullOrUndefined(filePath)) {
-                const fileExists = tree.exists(filePath);
-                if (fileExists) {
-                    // console.log(buildRelativePath(``, listPath));
-                    updateModuleFile(options, tree, filePath, project)
-                }
+        if (!isNullOrUndefined(filePath)) {
+            const fileExists = tree.exists(filePath);
+            if (fileExists) {
+                updateModuleFile(options, tree, filePath, project)
+            } else {
+                throw new SchematicsException(`Module file does not exists. You can use --skipModuleImport flag to skip the import of module`);
             }
         } else {
-
-            const rootModulePath = `${project.root}/` +
-                `${project.sourceRoot}/` +
-                `${project.prefix}/` +
-                `${project.prefix}.module.ts`;
-
-            updateModuleFile(options, tree, rootModulePath, project)
+            throw new SchematicsException(`Module file does not exists. You can use --skipModuleImport flag to skip the import of module`);
         }
+
         return tree;
+    }
+}
+
+export function getModuleFilePath(options: any, project: any) {
+    if (options.module !== 'root' && options.module !== 'app.module') {
+
+        const path = `./${project.root}/${project.sourceRoot}/${project.prefix}/`;
+        const srcFiles = getAllFiles(path);
+        return srcFiles.find((r: string) => r.match(new RegExp(options.module, 'g')));
+
+    } else {
+
+        return `${project.root}/` +
+            `${project.sourceRoot}/` +
+            `${project.prefix}/` +
+            `${project.prefix}.module.ts`;
+
     }
 }
 
@@ -92,7 +99,7 @@ function getAllFiles(directory: string) {
     }, [])
 }
 
-function getAsSourceFile(tree: Tree, path: string): ts.SourceFile {
+export function getAsSourceFile(tree: Tree, path: string): ts.SourceFile {
     const file = tree.read(path);
     if (!file) {
         throw new SchematicsException(`${path} not found`);
@@ -106,7 +113,7 @@ function getAsSourceFile(tree: Tree, path: string): ts.SourceFile {
     );
 }
 
-function findlastImportEndPos(file: ts.SourceFile): number {
+export function findlastImportEndPos(file: ts.SourceFile): number {
     let pos: number = 0;
     file.forEachChild((child: ts.Node) => {
         if (child.kind === ts.SyntaxKind.ImportDeclaration) {
@@ -147,4 +154,137 @@ function findDeclarationsArray(file: ts.SourceFile): any {
     });
 
     return declarations;
+}
+
+export function findImportsArray(file: ts.SourceFile): any {
+    // let pos: number = 0;
+
+    const imports = {
+        position: 0,
+        isEmptyArray: true,
+        text: '',
+        importDeclarationText: ''
+    };
+
+    file.forEachChild((node: ts.Node) => {
+        if (node.kind === ts.SyntaxKind.ImportDeclaration) {
+            //const text = node.getFullText();
+            // if (routerInstance.some(e => text.includes(e))) {
+            imports.importDeclarationText += node.getFullText();
+            //}
+        }
+    });
+
+    file.forEachChild((node: ts.Node) => {
+        if (node.kind === ts.SyntaxKind.ClassDeclaration) {
+
+            node.forEachChild((classChild: ts.Node) => {
+                if (classChild.kind === ts.SyntaxKind.Decorator) {
+                    classChild.forEachChild((moduleDeclaration: ts.Node) => {
+                        moduleDeclaration.forEachChild((objectLiteral: ts.Node) => {
+                            objectLiteral.forEachChild((property: ts.Node) => {
+                                if (property.getFullText().includes('imports')) {
+                                    let importArray = property.getFullText().replace('imports:', '');
+                                    importArray = importArray.replace(/\s/g, '');
+                                    imports.isEmptyArray = importArray === '[]';
+                                    imports.position = property.end;
+                                    imports.text = property.getFullText() || '';
+                                }
+                            });
+                        });
+                    });
+                }
+            });
+        }
+    });
+
+    return imports;
+}
+
+
+export function findRouteConst(file: ts.SourceFile) {
+
+    const route = {
+        position: 0,
+        isEmptyArray: true,
+        text: ''
+    };
+
+    file.forEachChild((node: ts.Node) => {
+        if (node.kind === ts.SyntaxKind.VariableStatement) {
+
+            node.forEachChild((classChild: ts.Node) => {
+                
+                if (classChild.getFullText().includes('routes')) {
+
+                    route.text = classChild.getFullText();
+                    let routeArray = classChild.getFullText().split('=');
+                    const cleanedRouteArray = routeArray && routeArray[1] && routeArray[1].replace(/\s/g, '');
+                    route.isEmptyArray = cleanedRouteArray === '[]';
+                    route.position = classChild.end;
+                }
+            });
+            return route;
+        }
+        if (node.kind === ts.SyntaxKind.ClassDeclaration) {
+
+            node.forEachChild((classChild: ts.Node) => {
+                if (classChild.kind === ts.SyntaxKind.Decorator) {
+                    classChild.forEachChild((moduleDeclaration: ts.Node) => {
+                        moduleDeclaration.forEachChild((objectLiteral: ts.Node) => {
+                            objectLiteral.forEachChild((property: ts.Node) => {
+                                if (property.getFullText().includes('imports')) {
+                                    let importArray = property.getFullText().replace('imports:', '');
+                                    importArray = importArray.replace(/\s/g, '');
+                                    route.isEmptyArray = importArray === '[]';
+                                    route.position = property.end;
+                                    route.text = property.getFullText() || '';
+                                }
+                            });
+                        });
+                    });
+                }
+            });
+            return route;
+        }
+    });
+
+    return route;
+
+}
+
+export function findRouterImport(file: ts.SourceFile) {
+
+    const route = {
+        position: 0,
+        isEmptyArray: true,
+        text: ''
+    };
+
+    file.forEachChild((node: ts.Node) => {
+        if (node.kind === ts.SyntaxKind.ClassDeclaration) {
+
+            node.forEachChild((classChild: ts.Node) => {
+                if (classChild.kind === ts.SyntaxKind.Decorator) {
+                    classChild.forEachChild((moduleDeclaration: ts.Node) => {
+                        moduleDeclaration.forEachChild((objectLiteral: ts.Node) => {
+                            objectLiteral.forEachChild((property: ts.Node) => {
+                                if (property.getFullText().includes('imports')) {
+                                    let importArray = property.getFullText().replace('imports:', '');
+                                    importArray = importArray.replace(/\s/g, '');
+                                    route.isEmptyArray = importArray === '[]';
+                                    route.position = property.end;
+                                    route.text = property.getFullText() || '';
+                                }
+                            });
+                        });
+                    });
+                }
+            });
+            return route;
+        }
+    });
+
+    return route;
+
 }

@@ -1,6 +1,6 @@
 {
-    "id": "AngularCrudderSchematic",
-    "title": "Angular Crudder Schematics",
+    "id": "IonicCrudderSchematic",
+    "title": "Ionic Crudder Schematics",
     "type": "object",
     "properties": {
         "name": {

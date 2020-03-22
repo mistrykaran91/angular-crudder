@@ -5,6 +5,11 @@
       "description": "A schematic project which generates angular CRUD code based on the valid JSON file provided.",
       "factory": "./angular-crudder/index#angularCrudder",
       "schema": "./angular-crudder/schema.json"
+    },
+    "ionic-crudder": {
+      "description": "A schematic project which generates angular CRUD for ionic code based on the valid JSON file provided.",
+      "factory": "./ionic-crudder/index#ionicCrudder",
+      "schema": "./ionic-crudder/schema.json"
     }
   }
 }

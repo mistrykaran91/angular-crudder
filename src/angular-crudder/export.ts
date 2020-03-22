@@ -2,6 +2,10 @@ import { generateForm } from './form-group.helper';
 import { generateComponentTemplate } from './edit.helper';
 import { generateListTemplate } from './list.helper';
 import { generateDetailsTemplate } from './details.helper';
+import { updateModule } from './module.helper';
+import { generateModel } from './model.helper';
+import { updateRouteFile } from './route.helper';
+
 import {
     getApiPath,
     getBaseUrl,
@@ -13,7 +17,6 @@ import {
     getSingularProperty,
     getUpdateMethod
 } from '../utility';
-import { generateModel } from './model.helper';
 
 export {
     generateForm,
@@ -29,5 +32,7 @@ export {
     getSingularMethod,
     generateModel,
     getSingularProperty,
-    getUpdateMethod
+    getUpdateMethod,
+    updateModule,
+    updateRouteFile
 }

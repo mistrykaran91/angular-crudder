@@ -4,7 +4,6 @@ import { normalize, strings, experimental } from '@angular-devkit/core';
 import * as helperFunctions from './export';
 import { checkIfFileExists, getIDFieldName, prettifyFiles } from '../utility';
 import { getProject } from '../utility/utility';
-import { updateModule } from './module.helper';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -40,8 +39,9 @@ export function angularCrudder(options: any): Rule {
       ]);
 
     const templateRule = mergeWith(newTree, MergeStrategy.Default);
-    const updateModuleRule = updateModule(options, workspace);
-    const chainedRule = chain([templateRule, updateModuleRule]);
+    const updateModuleRule = (options.skipModuleImport !== "true") ? helperFunctions.updateModule(options, workspace) : () => { };
+    const updateRouteRule = helperFunctions.updateRouteFile(options, workspace);
+    const chainedRule = chain([templateRule, updateModuleRule, updateRouteRule]);
     return chainedRule(tree, _context);
   };
 }

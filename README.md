@@ -45,9 +45,22 @@ Navigation in component's routerLink are written based on the below routes:-
 ```
 
 You have to change the api-url in the service file then your CRUD will work.
+
 You can use the `module` property to add the imports in your module file, it uses the regex pattern behind the scene to find the file.
 
 NOTE:- Routing file you have to import it components manually and declare your routes. 
+
+#### angular-crudder Properties
+
+| Property           | Description                                                                                            |
+|----------------|--------------------------------------------------------------------------------------------------------|
+| `name` | The name of the instance which represent your object. E.g.:- customer, employee   |
+| `schemaPath`   | Specifies the path of schema of which form and template is to be generated.   |
+| `path`    | Specifies the path to create the files under.             |
+| `changeDetection`        | Specifies if a change detection property is to be added in component metadata. Default is false.           |
+| `module`         | Specifies the module name in which imports are to be added.|
+| `skipModuleImport`         | Specifies if the module import is to skipped or not.|
+
 #### JSON File properties
 
 Each properties of the JSON file should be the FieldName which you want to be displayed in the form. The FieldName values should contain the metadata about that field. Below are the accepted the value metadata:-
