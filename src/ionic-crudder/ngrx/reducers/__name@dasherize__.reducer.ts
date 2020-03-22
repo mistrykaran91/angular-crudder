@@ -4,15 +4,15 @@ import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>.interf
 
 export const <%= camelize(name) %>FeatureKey = '<%= camelize(name) %>';
 
-const initialize<%= classify(name) %>: <%= classify(name) %> = { };
+<%= intialiseModel(schemaPath,name) %>
 
 export interface <%= classify(name) %>State {
-    <%= classify(name) %>s: Array<<%= classify(name) %>>;
+    <%= camelize(name) %>s: Array<<%= classify(name) %>>;
   current<%= classify(name) %>: <%= classify(name) %>;
 }
 
 export const <%= classify(name) %>State: <%= classify(name) %>State = {
-  <%= classify(name) %>s: null,
+  <%= camelize(name) %>s: null,
   current<%= classify(name) %>: null
 };
 

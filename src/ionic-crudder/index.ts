@@ -17,20 +17,11 @@ import { normalize, strings, experimental } from '@angular-devkit/core';
 import * as helperFunctions from './export';
 import { checkIfFileExists, getIDFieldName, prettifyFiles } from '../utility';
 import { getProject } from '../utility/utility';
-import { NEW_LINE } from '../utility/const';
-import {
-  getEffectsFolder,
-  getSelectorsFolder,
-  getActionsFolder,
-  getReducersFolder,
-  getOrCreateSourceFile
-} from './module.helper';
-import { textChangeRangeNewSpan } from 'typescript';
-import * as ts from 'typescript';
 import { createOrUpdateReducer } from './reducer.helper';
 import { createOrUpdateActions } from './actions.helper';
 import { createOrUpdateSelectors } from './selectors.helper';
 import { createOrUpdateEffects } from './effects.helper';
+import { createOrUpdateInterface } from './interface.helper';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -46,7 +37,6 @@ export function ionicCrudder(options: any): Rule {
 
     // source structure files.
     let files = url('./files');
-    console.log(files(_context));
     const fileContent = checkIfFileExists(options.schemaPath);
 
     if (!fileContent) {
@@ -69,15 +59,15 @@ export function ionicCrudder(options: any): Rule {
     const templateRule = mergeWith(newTree, MergeStrategy.Default);
     // const updateModuleRule = (options.skipModuleImport !== "true") ? helperFunctions.updateModule(options, workspace) : () => { };
     const updateRouteRule = helperFunctions.updateRouteFile(options, workspace);
-
+    // createOrUpdateInterface(project, options, tree);
     // const chainedRule = chain([templateRule, updateModuleRule, updateRouteRule]);
     const chainedRule = chain([
-      templateRule,
-      updateRouteRule,
-      createOrUpdateActions(project, options, tree),
+      // templateRule,
+      // updateRouteRule,
+      // createOrUpdateActions(project, options, tree),
       createOrUpdateReducer(project, options, tree),
-      createOrUpdateSelectors(project, options, tree),
-      createOrUpdateEffects(project, options, tree)
+      // createOrUpdateSelectors(project, options, tree),
+      // createOrUpdateEffects(project, options, tree)
     ]);
     return chainedRule(tree, _context);
   };

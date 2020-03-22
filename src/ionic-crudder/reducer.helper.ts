@@ -12,6 +12,7 @@ import {
   Source
 } from '@angular-devkit/schematics';
 import { getReducersFolder } from './module.helper';
+import { intialiseModel } from '../angular-crudder/intialise-model.helper';
 
 export function createOrUpdateReducer(
   project: any,
@@ -42,7 +43,8 @@ export function createOrUpdateReducer(
     move(reducerPath),
     template({
       ...strings,
-      ...options
+      ...options,
+      intialiseModel
     }),
     prettifyFiles()
   ]);

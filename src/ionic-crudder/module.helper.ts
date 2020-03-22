@@ -68,6 +68,15 @@ export function getActionsFolder(options: any, project: any) {
   );
 }
 
+export function getInterfacesFolder(options: any, project: any) {
+  return (
+    `${project.root}/` +
+    `${project.sourceRoot}/` +
+    `${project.prefix}/` +
+    `interfaces`
+  );
+}
+
 export function getSelectorsFolder(options: any, project: any) {
   return (
     `${project.root}/` +

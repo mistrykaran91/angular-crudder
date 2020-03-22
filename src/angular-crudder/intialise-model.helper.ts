@@ -2,8 +2,9 @@ import { strings } from '@angular-devkit/core';
 
 import { PropertyType, NEW_LINE, checkIfFileExists } from '../utility';
 import { TypeScriptMap } from '../enums';
+import { formatTypeScriptFile } from '../utility/prettify/prettifier';
 
-function generateModelData(properties: any, modelName: string) {
+function intialiseModelData(properties: any, modelName: string) {
   let modelData = '';
 
   let test: any =
@@ -20,34 +21,35 @@ function generateModelData(properties: any, modelName: string) {
 
           if (childProperty) {
             modelData = modelData.concat(
-              generateModelData(properties[key].property, capitalizedKey)
+              intialiseModelData(properties[key].property, capitalizedKey)
             );
           }
           return `${NEW_LINE} ${key}: ${capitalizedKey}`;
         } else if (property.type === PropertyType.ARRAY) {
-          return `${NEW_LINE} ${key}: Array<any>;`;
+          return `${NEW_LINE} ${key}: null,`;
         } else {
           const dataType =
             TypeScriptMap.get(property.type) || TypeScriptMap.get('text');
-          return `${NEW_LINE} ${key}: ${dataType};`;
+          return `${NEW_LINE} ${key}: null,`;
         }
       })
       .reduce((a: any, b: any) => (a += b), '') || '';
 
-  let interfaceContent = `${NEW_LINE} export interface ${modelName} { ${NEW_LINE}`;
+  let interfaceContent = `${NEW_LINE} const initialize${modelName}: ${modelName} = { ${NEW_LINE}`;
   interfaceContent += test;
   interfaceContent += `${NEW_LINE} } ${NEW_LINE}`;
 
-  return modelData + interfaceContent;
+  return formatTypeScriptFile(modelData + interfaceContent);
 }
 
-export function generateModel(schemaPath: string, name: string): string {
+export function intialiseModel(schemaPath: string, name: string): string {
   const schemaDefinition = checkIfFileExists(schemaPath);
   if (schemaDefinition) {
     const interfaceName = strings.classify(name);
     let value = '';
-    value = value.concat(generateModelData(schemaDefinition, interfaceName));
-    return value;
+    value = value.concat(intialiseModelData(schemaDefinition, interfaceName));
+    return formatTypeScriptFile(value);
   }
+
   return '';
 }

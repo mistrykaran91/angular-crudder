@@ -17,6 +17,7 @@ import {
   getSingularProperty,
   getUpdateMethod
 } from '../utility';
+import { intialiseModel } from '../angular-crudder/export';
 
 export {
   generateForm,
@@ -34,5 +35,6 @@ export {
   getSingularProperty,
   getUpdateMethod,
   updateModule,
-  updateRouteFile
+  updateRouteFile,
+  intialiseModel
 };
