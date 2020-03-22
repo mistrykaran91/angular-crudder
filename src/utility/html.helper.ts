@@ -99,7 +99,9 @@ export function generateIonLabel(
   className: string | null = null,
   position: string | null = null
 ) {
+  console.log('Label', label, className, position);
   const ionLabel = doc.createElement('ion-label');
+
   if (!isNullOrUndefined(className)) {
     ionLabel.setAttribute('class', className);
   }
@@ -139,7 +141,7 @@ export function generateIonSelect(key: string) {
   defaultOption.innerHTML = '{{ defaultOption }}';
   defaultOption.innerText = '{{ defaultOption }}';
 
-  select.options.add(defaultOption);
+  select.appendChild(defaultOption);
 
   const option = doc.createElement('ion-select-option');
   option.setAttribute(AngularAttribute.NG_VALUE, 'item.id');
@@ -147,7 +149,7 @@ export function generateIonSelect(key: string) {
   option.innerText = '{{ item?.name }}';
 
   option.setAttribute(AngularAttribute.NG_FOR_LOOP, '');
-  select.options.add(option);
+  select.appendChild(option);
 
   return select;
 }
