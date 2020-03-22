@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
 import { <%= classify(name) %>EditPageRoutingModule } from './<%= dasherize(name) %>-edit-routing.module';
-import { <%= classify(name) %>EditPage } from '../<%= dasherize(name) %>-edit.page';
+import { <%= classify(name) %>EditPage } from './<%= dasherize(name) %>-edit.page';
 
 @NgModule({
   imports: [

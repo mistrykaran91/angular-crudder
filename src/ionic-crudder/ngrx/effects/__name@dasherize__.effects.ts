@@ -7,7 +7,7 @@ import * as <%= classify(name) %>Actions from '@app/actions/<%= dasherize(name) 
 import * as Selectors from '@app/selectors';
 import * as Reducers from '@app/reducers';
 import { concatMap, map, tap, withLatestFrom } from 'rxjs/operators';
-import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>.interface';
+import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>-interface';
 import { Store } from '@ngrx/store';
 
 @Injectable({
@@ -59,7 +59,7 @@ export class <%= classify(name) %>Effects {
         return this.http.post<<%= classify(name) %>>(`${this.<%= camelize(name) %>Url}`, <%= camelize(name) %>).pipe(
           map(<%= camelize(name) %> => <%= classify(name) %>Actions.create<%= classify(name) %>Success({ <%= camelize(name) %> })),
           tap(() => {
-            this.messageService.successToast(SUBJECT_CREATED);
+            this.messageService.successToast(`<%= classify(name) %> Created Successfully.`);
             this.router.navigate(['/<%= camelize(name) %>']);
           })
         );
@@ -77,7 +77,7 @@ export class <%= classify(name) %>Effects {
           .pipe(
             map(_ => <%= classify(name) %>Actions.update<%= classify(name) %>Success({ <%= camelize(name) %> })),
             tap(() => {
-              this.messageService.successToast(SUBJECT_UPDATED);
+              this.messageService.successToast(`<%= classify(name) %> Updated Successfully.`);
               this.router.navigate(['/<%= camelize(name) %>']);
             })
           );
@@ -114,7 +114,7 @@ export class <%= classify(name) %>Effects {
         return this.http.delete(`${this.<%= camelize(name) %>Url}/${<%= camelize(name) %>Id}`).pipe(
           map(_ => <%= classify(name) %>Actions.delete<%= classify(name) %>Success({ <%= camelize(name) %>Id })),
           tap(() => {
-            this.messageService.successToast(SUBJECT_DELETED);
+            this.messageService.successToast(`<%= classify(name) %> Deleted Successfully.`);
             this.router.navigate(['/<%= camelize(name) %>']);
           })
         );

@@ -8,8 +8,7 @@ import {
   template,
   Tree,
   mergeWith,
-  MergeStrategy,
-  Source
+  MergeStrategy
 } from '@angular-devkit/schematics';
 import { getReducersFolder } from './module.helper';
 import { intialiseModel } from '../angular-crudder/intialise-model.helper';

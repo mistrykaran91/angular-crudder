@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 
-import { <%= classify(name) %>PageRoutingModule } from './subject-routing.module';
-import { <%= classify(name) %>Page } from '../<%= dasherize(name) %>.page';
+import { <%= classify(name) %>PageRoutingModule } from './<%= dasherize(name) %>-routing.module';
+import { <%= classify(name) %>Page } from './<%= dasherize(name) %>.page';
 
 @NgModule({
   imports: [

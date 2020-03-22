@@ -99,7 +99,6 @@ export function generateIonLabel(
   className: string | null = null,
   position: string | null = null
 ) {
-  console.log('Label', label, className, position);
   const ionLabel = doc.createElement('ion-label');
 
   if (!isNullOrUndefined(className)) {

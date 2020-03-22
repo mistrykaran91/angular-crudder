@@ -58,12 +58,11 @@ export function ionicCrudder(options: any): Rule {
 
     const templateRule = mergeWith(newTree, MergeStrategy.Default);
     // const updateModuleRule = (options.skipModuleImport !== "true") ? helperFunctions.updateModule(options, workspace) : () => { };
-    const updateRouteRule = helperFunctions.updateRouteFile(options, workspace);
+    // const updateRouteRule = helperFunctions.updateRouteFile(options, workspace);
     createOrUpdateInterface(project, options, tree);
     // const chainedRule = chain([templateRule, updateModuleRule, updateRouteRule]);
     const chainedRule = chain([
       templateRule,
-      updateRouteRule,
       createOrUpdateActions(project, options, tree),
       createOrUpdateReducer(project, options, tree),
       createOrUpdateSelectors(project, options, tree),

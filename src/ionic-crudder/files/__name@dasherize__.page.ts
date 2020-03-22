@@ -18,9 +18,9 @@ import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>.interf
 })
 export class <%= classify(name) %>Page implements OnInit {
 
-  <%= camelize(name) %>s$: Observable<<%= classify(name) %>> = this.store.select(Selectors.get<%= classify(name) %>s);
-  is<%= camelize(name) %>Empty$: Observable<boolean> = this.store.select(
-    Selectors.getIs<%= camelize(name) %>Empty
+  <%= camelize(name) %>s$: Observable<Array<<%= classify(name) %>>> = this.store.select(Selectors.get<%= classify(name) %>s);
+  is<%= classify(name) %>Empty$: Observable<boolean> = this.store.select(
+    Selectors.getIs<%= classify(name) %>Empty
   );  
 
   constructor(private store: Store<Reducers.<%= classify(name) %>State>,
@@ -48,6 +48,6 @@ export class <%= classify(name) %>Page implements OnInit {
 
   onDelete<%= classify(name) %>(<%= camelize(name) %>: <%= classify(name) %>, slidingItem: IonItemSliding) {
     slidingItem.close();
-    this.store.dispatch(Actions.showDeleteConfirmation({ <%= camelize(name) %> }));
+    this.store.dispatch(Actions.show<%= classify(name) %>DeleteConfirmation({ <%= camelize(name) %> }));
   }
 }

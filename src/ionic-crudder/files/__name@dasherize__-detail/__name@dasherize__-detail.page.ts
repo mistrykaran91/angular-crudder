@@ -30,6 +30,6 @@ export class <%= classify(name) %>DetailPage implements OnInit {
   }
 
   onDelete<%= classify(name) %>(<%= camelize(name) %>: <%= classify(name) %>) {
-    this.store.dispatch(Actions.showDeleteConfirmation({ <%= camelize(name) %> }));
+    this.store.dispatch(Actions.show<%= classify(name) %>DeleteConfirmation({ <%= camelize(name) %> }));
   }
 }
