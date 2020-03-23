@@ -7,7 +7,7 @@
       <ion-title><%= classify(name) %> Detail </ion-title>
       <ion-buttons slot="primary">
         <ion-button
-          [routerLink]=" ['/','<%= camelize(name) %>', 'edit', <%= camelize(name) %>.id]"
+          [routerLink]=" ['/','<%= camelize(name) %>', <%= camelize(name) %>.id, 'edit']"
         >
           <ion-icon name="create-outline" slot="icon-only"></ion-icon>
         </ion-button>
@@ -28,7 +28,7 @@
           <ion-list>
             <ion-item lines="full" class="ion-no-padding">
               <div class="img-center">
-                <ion-img [src]="<%= classify(name) %>.imgSrc"></ion-img>
+                <ion-img [src]="<%= camelize(name) %>.imgSrc"></ion-img>
               </div>
             </ion-item>
 

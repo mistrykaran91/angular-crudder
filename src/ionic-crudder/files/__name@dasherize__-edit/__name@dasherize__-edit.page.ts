@@ -48,7 +48,7 @@ export class <%= classify(name) %>EditPage implements OnInit {
 
     const <%= camelize(name) %>: <%= classify(name) %> = { ...this.<%= camelize(name) %>, ...this.<%= camelize(name) %>Form.value };
 
-    if (<%= camelize(name) %>.id === 0) {
+    if (!<%= camelize(name) %>.id) {
       this.store.dispatch(Actions.create<%= classify(name) %>({ <%= camelize(name) %> }));
     } else {
       this.store.dispatch(Actions.update<%= classify(name) %>({ <%= camelize(name) %> }));

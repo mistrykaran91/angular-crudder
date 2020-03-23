@@ -22,7 +22,7 @@ const <%= classify(name) %>Reducer = createReducer(
   on(<%= classify(name) %>Actions.load<%= classify(name) %>Success, (state, action) => {
     return {
       ...state,
-      <%= classify(name) %>s: action.<%= camelize(name) %>s
+      <%= camelize(name) %>s: action.<%= camelize(name) %>s
     };
   }),
   on(<%= classify(name) %>Actions.load<%= classify(name) %>ById, state => state),

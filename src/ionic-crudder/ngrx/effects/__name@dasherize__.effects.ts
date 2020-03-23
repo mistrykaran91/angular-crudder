@@ -7,7 +7,7 @@ import * as <%= classify(name) %>Actions from '@app/actions/<%= dasherize(name) 
 import * as Selectors from '@app/selectors';
 import * as Reducers from '@app/reducers';
 import { concatMap, map, tap, withLatestFrom } from 'rxjs/operators';
-import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>-interface';
+import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>.interface';
 import { Store } from '@ngrx/store';
 
 @Injectable({

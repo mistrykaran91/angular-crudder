@@ -1,6 +1,6 @@
 {
   "name": "angular-crudder",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A schematic project which generates angular CRUD code based on the valid JSON file provided.",
   "scripts": {
     "build": "tsc -p tsconfig.json",

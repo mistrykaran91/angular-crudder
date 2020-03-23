@@ -24,7 +24,7 @@ export class <%= classify(name) %>DetailPage implements OnInit {
 
   ngOnInit() {
     
-    const <%= camelize(name) %>Id = +this.activatedRoute.snapshot.paramMap.get('<%= camelize(name) %>');
+    const <%= camelize(name) %>Id = +this.activatedRoute.snapshot.paramMap.get('<%= camelize(name) %>Id');
     this.store.dispatch(Actions.load<%= classify(name) %>ById({ <%= camelize(name) %>Id }));
     
   }
