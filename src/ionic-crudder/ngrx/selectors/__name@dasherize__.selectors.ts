@@ -15,13 +15,13 @@ export const getCurrent<%= classify(name) %> = createSelector(
   state => state && state.current<%= classify(name) %>
 );
 
-export const get<%= classify(name) %> = createSelector(<%= getPluralPropertyName(name,pluralName,'true') %>, (<%= getPluralPropertyName(name,pluralName) %>, props) => {
+export const get<%= classify(name) %> = createSelector(get<%= getPluralPropertyName(name,pluralName,'true') %>, (<%= getPluralPropertyName(name,pluralName) %>, props) => {
   const { <%= camelize(name) %>Id } = props;
   return <%= getPluralPropertyName(name,pluralName) %>.find(r => r.id === +<%= camelize(name) %>Id);
 });
 
 export const getIs<%= classify(name) %>Empty = createSelector(
-  <%= getPluralPropertyName(name,pluralName,'true') %>,
+  get<%= getPluralPropertyName(name,pluralName,'true') %>,
   <%= getPluralPropertyName(name,pluralName) %> => <%= getPluralPropertyName(name,pluralName) %> && <%= getPluralPropertyName(name,pluralName) %>.length === 0
 );
 
