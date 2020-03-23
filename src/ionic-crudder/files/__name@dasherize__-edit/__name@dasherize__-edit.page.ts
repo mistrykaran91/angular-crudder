@@ -54,4 +54,12 @@ export class <%= classify(name) %>EditPage implements OnInit {
       this.store.dispatch(Actions.update<%= classify(name) %>({ <%= camelize(name) %> }));
     }
   }
+
+  
+  get title() {
+    if (!this.<%= camelize(name) %> || !this.<%= camelize(name) %>.id) {
+      return 'Add <%= classify(name) %>';
+    }
+    return 'Edit <%= classify(name) %>';
+  }
 }

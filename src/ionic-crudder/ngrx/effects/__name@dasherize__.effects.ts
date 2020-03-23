@@ -9,6 +9,7 @@ import * as Reducers from '@app/reducers';
 import { concatMap, map, tap, withLatestFrom } from 'rxjs/operators';
 import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>.interface';
 import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,10 @@ export class <%= classify(name) %>Effects {
 
         const { <%= camelize(name) %>Id } = action;
 
+        if(!<%= camelize(name) %>Id){
+          return of(<%= classify(name) %>Actions.setCurrent<%= classify(name) %>({ <%= camelize(name) %>: null }) )
+        }
+
         return this.http
           .get<<%= classify(name) %>>(`${this.<%= camelize(name) %>Url}/${<%= camelize(name) %>Id}`)
           .pipe(
@@ -52,9 +57,10 @@ export class <%= classify(name) %>Effects {
   create<%= classify(name) %>$ = createEffect(() =>
     this.actions$.pipe(
       ofType(<%= classify(name) %>Actions.create<%= classify(name) %>),
-      concatMap(action => {
-        const <%= camelize(name) %> = { ...action.<%= camelize(name) %> };
-        delete <%= camelize(name) %>.id;
+      withLatestFrom(this.store.select(Selectors.getGenId)),
+      concatMap(([action,genId]) => {
+        const <%= camelize(name) %> = { ...action.<%= camelize(name) %> , id : genId };
+        
 
         return this.http.post<<%= classify(name) %>>(`${this.<%= camelize(name) %>Url}`, <%= camelize(name) %>).pipe(
           map(<%= camelize(name) %> => <%= classify(name) %>Actions.create<%= classify(name) %>Success({ <%= camelize(name) %> })),

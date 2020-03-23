@@ -45,7 +45,7 @@ const <%= classify(name) %>Reducer = createReducer(
   on(<%= classify(name) %>Actions.load<%= classify(name) %>Failure, state => state),
   on(<%= classify(name) %>Actions.create<%= classify(name) %>, state => state),
   on(<%= classify(name) %>Actions.create<%= classify(name) %>Success, (state, action) => {
-    return { ...state, <%= getPluralPropertyName(name,pluralName) %>: [...state.<%= getPluralPropertyName(name,pluralName) %>, action.<%= camelize(name) %>] };
+    return { ...state, <%= getPluralPropertyName(name,pluralName) %>: state.<%= getPluralPropertyName(name,pluralName) %> ? [...state.<%= getPluralPropertyName(name,pluralName) %>, action.<%= camelize(name) %>] :[action.<%= camelize(name) %>] };
   }),
   on(<%= classify(name) %>Actions.create<%= classify(name) %>Failure, state => state),
   on(<%= classify(name) %>Actions.update<%= classify(name) %>, state => state),
