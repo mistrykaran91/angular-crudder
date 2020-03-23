@@ -57,7 +57,7 @@ export class <%= classify(name) %>Effects {
   create<%= classify(name) %>$ = createEffect(() =>
     this.actions$.pipe(
       ofType(<%= classify(name) %>Actions.create<%= classify(name) %>),
-      withLatestFrom(this.store.select(Selectors.getGenId)),
+      withLatestFrom(this.store.select(Selectors.get<%= classify(name) %>GenId)),
       concatMap(([action,genId]) => {
         const <%= camelize(name) %> = { ...action.<%= camelize(name) %> , id : genId };
         

@@ -1,4 +1,7 @@
-import { prettifyFiles } from '../utility/prettify/prettifier';
+import {
+  prettifyFiles,
+  formatTypeScriptFile
+} from '../utility/prettify/prettifier';
 import { strings } from '@angular-devkit/core';
 import {
   apply,
@@ -38,6 +41,12 @@ export function createOrUpdateReducer(
     );
     tree.commitUpdate(rec);
   }
+
+  const content = tree.read(indexReducerPath) || null;
+  tree.overwrite(
+    indexReducerPath,
+    formatTypeScriptFile(content && content.toString())
+  );
 
   const reducerTree = apply(reducerFile, [
     move(reducerPath),

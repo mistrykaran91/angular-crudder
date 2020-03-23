@@ -1,4 +1,7 @@
-import { prettifyFiles } from '../utility/prettify/prettifier';
+import {
+  prettifyFiles,
+  formatTypeScriptFile
+} from '../utility/prettify/prettifier';
 import { strings } from '@angular-devkit/core';
 import {
   apply,
@@ -37,6 +40,12 @@ export function createOrUpdateEffects(
     );
     tree.commitUpdate(rec);
   }
+
+  const content = tree.read(indexEffectPath) || null;
+  tree.overwrite(
+    indexEffectPath,
+    formatTypeScriptFile(content && content.toString())
+  );
 
   const effectTree = apply(effectFile, [
     move(effectPath),

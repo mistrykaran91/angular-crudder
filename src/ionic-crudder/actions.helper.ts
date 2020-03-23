@@ -1,4 +1,7 @@
-import { prettifyFiles } from '../utility/prettify/prettifier';
+import {
+  prettifyFiles,
+  formatTypeScriptFile
+} from '../utility/prettify/prettifier';
 import { strings } from '@angular-devkit/core';
 import {
   apply,
@@ -11,7 +14,7 @@ import {
   MergeStrategy
 } from '@angular-devkit/schematics';
 import { getActionsFolder } from './module.helper';
-import { getPluralPropertyName } from '../utility/utility';
+import { getPluralPropertyName, splittedCapitalize } from '../utility/utility';
 
 export function createOrUpdateActions(
   project: any,
@@ -38,12 +41,19 @@ export function createOrUpdateActions(
     tree.commitUpdate(rec);
   }
 
+  const content = tree.read(indexActionPath) || null;
+  tree.overwrite(
+    indexActionPath,
+    formatTypeScriptFile(content && content.toString())
+  );
+
   const actionsTree = apply(actionsFile, [
     move(actionsPath),
     template({
       ...strings,
       ...options,
       getPluralPropertyName,
+      splittedCapitalize
     }),
     prettifyFiles()
   ]);

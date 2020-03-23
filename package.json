@@ -1,12 +1,12 @@
 {
   "name": "angular-crudder",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "A schematic project which generates angular CRUD code based on the valid JSON file provided.",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "schematic": "schematics .:angular-crudder --name=customer --schemaPath=H:/schema.json --module=customer.module --skipModuleImport=false ",
-    "schematic-build": "schematics .:ionic-crudder --name=university --dry-run=false --schemaPath=H:/university.json --changeDetection=false --apiUrl=api/universities --pluralName=universities",
+    "schematic-build": "schematics .:ionic-crudder --name=leadSource --dry-run=false --schemaPath=H:/lead.json --changeDetection=false --apiUrl=api/leadSources --pluralName=leadSources",
     "delete-existing": ""
   },
   "keywords": [

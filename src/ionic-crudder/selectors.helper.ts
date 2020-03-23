@@ -1,4 +1,7 @@
-import { prettifyFiles } from '../utility/prettify/prettifier';
+import {
+  prettifyFiles,
+  formatTypeScriptFile
+} from '../utility/prettify/prettifier';
 import { strings } from '@angular-devkit/core';
 import {
   apply,
@@ -37,6 +40,12 @@ export function createOrUpdateSelectors(
     );
     tree.commitUpdate(rec);
   }
+
+  const content = tree.read(indexSelectorsPath) || null;
+  tree.overwrite(
+    indexSelectorsPath,
+    formatTypeScriptFile(content && content.toString())
+  );
 
   const selectorsTree = apply(selectorsFile, [
     move(selectorsPath),

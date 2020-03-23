@@ -16,7 +16,7 @@ export const <%= classify(name) %>State: <%= classify(name) %>State = {
   current<%= classify(name) %>: null
 };
 
-const <%= classify(name) %>Reducer = createReducer(
+const _<%= camelize(name) %>Reducer = createReducer(
   <%= classify(name) %>State,
   on(<%= classify(name) %>Actions.load<%= classify(name) %>, state => state),
   on(<%= classify(name) %>Actions.load<%= classify(name) %>Success, (state, action) => {
@@ -67,6 +67,6 @@ const <%= classify(name) %>Reducer = createReducer(
   on(<%= classify(name) %>Actions.delete<%= classify(name) %>Failure, state => state)
 );
 
-export function reducer(state, action) {
-  return <%= classify(name) %>Reducer(state, action);
+export function <%= camelize(name) %>Reducer(state, action) {
+  return _<%= camelize(name) %>Reducer(state, action);
 }

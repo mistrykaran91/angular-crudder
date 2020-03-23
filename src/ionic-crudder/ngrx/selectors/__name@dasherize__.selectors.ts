@@ -25,6 +25,6 @@ export const getIs<%= classify(name) %>Empty = createSelector(
   <%= getPluralPropertyName(name,pluralName) %> => <%= getPluralPropertyName(name,pluralName) %> && <%= getPluralPropertyName(name,pluralName) %>.length === 0
 );
 
-export const getGenId = createSelector(get<%= getPluralPropertyName(name,pluralName,'true') %>, <%= getPluralPropertyName(name,pluralName) %> => {
+export const get<%= classify(name) %>GenId = createSelector(get<%= getPluralPropertyName(name,pluralName,'true') %>, <%= getPluralPropertyName(name,pluralName) %> => {
   return !<%= getPluralPropertyName(name,pluralName) %> || <%= getPluralPropertyName(name,pluralName) %>.length === 0 ? 11 : <%= getPluralPropertyName(name,pluralName) %>.length + 5;
 });

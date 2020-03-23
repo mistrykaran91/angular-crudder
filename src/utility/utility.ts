@@ -195,6 +195,14 @@ export function getPluralPropertyName(
   }
 }
 
+export function splittedCapitalize(name: string) {
+  return strings
+    .dasherize(name)
+    .split('-')
+    .reduce((acc, res) => (acc += ' ' + strings.capitalize(res)), '')
+    .trim();
+}
+
 export function getAPIUrl(name: string, api: string) {
   return api ? api : `api/${strings.camelize(name)}`;
 }
