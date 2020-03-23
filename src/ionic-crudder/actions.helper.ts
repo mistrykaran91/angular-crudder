@@ -11,6 +11,7 @@ import {
   MergeStrategy
 } from '@angular-devkit/schematics';
 import { getActionsFolder } from './module.helper';
+import { getPluralPropertyName } from '../utility/utility';
 
 export function createOrUpdateActions(
   project: any,
@@ -41,7 +42,8 @@ export function createOrUpdateActions(
     move(actionsPath),
     template({
       ...strings,
-      ...options
+      ...options,
+      getPluralPropertyName,
     }),
     prettifyFiles()
   ]);

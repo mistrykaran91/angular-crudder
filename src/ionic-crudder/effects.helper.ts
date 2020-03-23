@@ -11,13 +11,13 @@ import {
   MergeStrategy
 } from '@angular-devkit/schematics';
 import { getEffectsFolder } from './module.helper';
+import { getPluralPropertyName, getAPIUrl } from '../utility/utility';
 
 export function createOrUpdateEffects(
   project: any,
   options: any,
   tree: Tree
 ): Rule {
-
   const effectPath = getEffectsFolder(options, project);
   const indexEffectPath = `${effectPath}/index.ts`;
   const effectFile = url('./ngrx/effects/');
@@ -42,7 +42,9 @@ export function createOrUpdateEffects(
     move(effectPath),
     template({
       ...strings,
-      ...options
+      ...options,
+      getAPIUrl,
+      getPluralPropertyName
     }),
     prettifyFiles()
   ]);

@@ -12,6 +12,7 @@ import {
 } from '@angular-devkit/schematics';
 import { getReducersFolder } from './module.helper';
 import { intialiseModel } from '../angular-crudder/intialise-model.helper';
+import { getPluralPropertyName } from '../utility/utility';
 
 export function createOrUpdateReducer(
   project: any,
@@ -43,7 +44,8 @@ export function createOrUpdateReducer(
     template({
       ...strings,
       ...options,
-      intialiseModel
+      intialiseModel,
+      getPluralPropertyName
     }),
     prettifyFiles()
   ]);

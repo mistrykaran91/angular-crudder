@@ -31,7 +31,7 @@
         *ngIf="(is<%= classify(name) %>Empty$ | async) === false">
         <ion-list>
           <ion-item-sliding
-            *ngFor="let <%= camelize(name) %> of <%= camelize(name) %>s$ | async"
+            *ngFor="let <%= camelize(name) %> of <%= getPluralPropertyName(name,pluralName) %>$ | async"
             #slidingItem>
             <ion-item
               detail
@@ -71,7 +71,7 @@
         size="12"
         size-sm="8"
         offset-sm="2"
-        *ngIf="(<%= camelize(name) %>s$ | async) === null">
+        *ngIf="(<%= getPluralPropertyName(name,pluralName) %>$ | async) === null">
         <app-list-skeleton></app-list-skeleton>
       </ion-col>
     </ion-row>

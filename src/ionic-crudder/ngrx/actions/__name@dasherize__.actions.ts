@@ -5,7 +5,7 @@ export const load<%= classify(name) %> = createAction('[<%= classify(name) %>] L
 
 export const load<%= classify(name) %>Success = createAction(
   '[<%= classify(name) %>] Load <%= classify(name) %> Success',
-  props<{ <%= camelize(name) %>s: Array<<%= classify(name) %>> }>()
+  props<{ <%= getPluralPropertyName(name,pluralName) %>: Array<<%= classify(name) %>> }>()
 );
 
 export const load<%= classify(name) %>Failure = createAction(

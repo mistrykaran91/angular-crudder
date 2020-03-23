@@ -7,12 +7,12 @@ export const <%= camelize(name) %>FeatureKey = '<%= camelize(name) %>';
 <%= intialiseModel(schemaPath,name) %>
 
 export interface <%= classify(name) %>State {
-    <%= camelize(name) %>s: Array<<%= classify(name) %>>;
+  <%= getPluralPropertyName(name,pluralName) %>: Array<<%= classify(name) %>>;
   current<%= classify(name) %>: <%= classify(name) %>;
 }
 
 export const <%= classify(name) %>State: <%= classify(name) %>State = {
-  <%= camelize(name) %>s: null,
+  <%= getPluralPropertyName(name,pluralName) %>: null,
   current<%= classify(name) %>: null
 };
 
@@ -22,7 +22,7 @@ const <%= classify(name) %>Reducer = createReducer(
   on(<%= classify(name) %>Actions.load<%= classify(name) %>Success, (state, action) => {
     return {
       ...state,
-      <%= camelize(name) %>s: action.<%= camelize(name) %>s
+      <%= getPluralPropertyName(name,pluralName) %>: action.<%= getPluralPropertyName(name,pluralName) %>
     };
   }),
   on(<%= classify(name) %>Actions.load<%= classify(name) %>ById, state => state),
@@ -45,23 +45,23 @@ const <%= classify(name) %>Reducer = createReducer(
   on(<%= classify(name) %>Actions.load<%= classify(name) %>Failure, state => state),
   on(<%= classify(name) %>Actions.create<%= classify(name) %>, state => state),
   on(<%= classify(name) %>Actions.create<%= classify(name) %>Success, (state, action) => {
-    return { ...state, <%= camelize(name) %>s: [...state.<%= camelize(name) %>s, action.<%= camelize(name) %>] };
+    return { ...state, <%= getPluralPropertyName(name,pluralName) %>: [...state.<%= getPluralPropertyName(name,pluralName) %>, action.<%= camelize(name) %>] };
   }),
   on(<%= classify(name) %>Actions.create<%= classify(name) %>Failure, state => state),
   on(<%= classify(name) %>Actions.update<%= classify(name) %>, state => state),
   on(<%= classify(name) %>Actions.update<%= classify(name) %>Success, (state, action) => {
-    const updated<%= classify(name) %>s = state.<%= camelize(name) %>s.map(item =>
+    const updated<%= classify(name) %>s = state.<%= getPluralPropertyName(name,pluralName) %>.map(item =>
       action.<%= camelize(name) %>.id === item.id ? action.<%= camelize(name) %> : item
     );
 
-    return { ...state, <%= camelize(name) %>s: updated<%= classify(name) %>s };
+    return { ...state, <%= getPluralPropertyName(name,pluralName) %>: updated<%= classify(name) %>s };
   }),
   on(<%= classify(name) %>Actions.update<%= classify(name) %>Failure, state => state),
   on(<%= classify(name) %>Actions.delete<%= classify(name) %>, state => state),
   on(<%= classify(name) %>Actions.delete<%= classify(name) %>Success, (state, action) => {
     return {
       ...state,
-      <%= camelize(name) %>s: state.<%= camelize(name) %>s.filter(item => item.id !== action.<%= camelize(name) %>Id)
+      <%= getPluralPropertyName(name,pluralName) %>: state.<%= getPluralPropertyName(name,pluralName) %>.filter(item => item.id !== action.<%= camelize(name) %>Id)
     };
   }),
   on(<%= classify(name) %>Actions.delete<%= classify(name) %>Failure, state => state)

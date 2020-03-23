@@ -17,7 +17,9 @@ import {
   getPluralProperty,
   getSingularMethod,
   getSingularProperty,
-  getUpdateMethod
+  getUpdateMethod,
+  getPluralPropertyName,
+  getAPIUrl
 } from '../utility';
 
 export {
@@ -38,5 +40,7 @@ export {
   updateModule,
   updateRouteFile,
   intialiseModel,
-  generateDetailTemplate
+  generateDetailTemplate,
+  getPluralPropertyName,
+  getAPIUrl
 };

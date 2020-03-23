@@ -30,7 +30,12 @@ function intialiseModelData(properties: any, modelName: string) {
         } else {
           const dataType =
             TypeScriptMap.get(property.type) || TypeScriptMap.get('text');
-          return `${NEW_LINE} ${key}: null,`;
+
+          if (property.isId) {
+            return `${NEW_LINE} ${key}: 0,`;
+          } else {
+            return `${NEW_LINE} ${key}: null,`;
+          }
         }
       })
       .reduce((a: any, b: any) => (a += b), '') || '';

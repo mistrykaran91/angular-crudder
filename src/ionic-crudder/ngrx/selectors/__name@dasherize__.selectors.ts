@@ -7,7 +7,7 @@ export const <%= camelize(name) %>Feature = createFeatureSelector<<%= classify(n
 
 export const get<%= classify(name) %>s = createSelector(
   <%= camelize(name) %>Feature,
-  state => state && state.<%= camelize(name) %>s
+  state => state && state.<%= getPluralPropertyName(name,pluralName) %>
 );
 
 export const getCurrent<%= classify(name) %> = createSelector(
@@ -15,12 +15,12 @@ export const getCurrent<%= classify(name) %> = createSelector(
   state => state && state.current<%= classify(name) %>
 );
 
-export const get<%= classify(name) %> = createSelector(get<%= classify(name) %>s, (<%= camelize(name) %>s, props) => {
+export const get<%= classify(name) %> = createSelector(get<%= classify(name) %>s, (<%= getPluralPropertyName(name,pluralName) %>, props) => {
   const { <%= camelize(name) %>Id } = props;
-  return <%= camelize(name) %>s.find(r => r.id === +<%= camelize(name) %>Id);
+  return <%= getPluralPropertyName(name,pluralName) %>.find(r => r.id === +<%= camelize(name) %>Id);
 });
 
 export const getIs<%= classify(name) %>Empty = createSelector(
   get<%= classify(name) %>s,
-  <%= camelize(name) %>s => <%= camelize(name) %>s && <%= camelize(name) %>s.length === 0
+  <%= getPluralPropertyName(name,pluralName) %> => <%= getPluralPropertyName(name,pluralName) %> && <%= getPluralPropertyName(name,pluralName) %>.length === 0
 );

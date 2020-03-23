@@ -11,6 +11,7 @@ import {
   MergeStrategy
 } from '@angular-devkit/schematics';
 import { getSelectorsFolder } from './module.helper';
+import { getPluralPropertyName } from '../utility/utility';
 
 export function createOrUpdateSelectors(
   project: any,
@@ -41,7 +42,8 @@ export function createOrUpdateSelectors(
     move(selectorsPath),
     template({
       ...strings,
-      ...options
+      ...options,
+      getPluralPropertyName
     }),
     prettifyFiles()
   ]);

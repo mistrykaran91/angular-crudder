@@ -12,7 +12,7 @@ import { <%= classify(name) %> } from '../<%= dasherize(name) %>.model';
 })
 export class <%= classify(name) %>ListComponent implements OnInit {
 
-  public <%= camelize(name) %>s: <%= classify(name) %>[];
+  public <%= getPluralPropertyName(name,pluralName) %>: <%= classify(name) %>[];
   public pageTitle = '<%= classify(name) %> List';
 
   constructor(
@@ -25,7 +25,7 @@ export class <%= classify(name) %>ListComponent implements OnInit {
 
   get<%= classify(name) %>s(): void {
     this.<%= camelize(name) %>Service.get<%= classify(name) %>s()
-      .subscribe(customers => this.<%= camelize(name) %>s = <%= camelize(name) %>s);
+      .subscribe(<%= getPluralPropertyName(name,pluralName) %> => this.<%= getPluralPropertyName(name,pluralName) %> = <%= getPluralPropertyName(name,pluralName) %>);
   }
 
   onAddClick() {

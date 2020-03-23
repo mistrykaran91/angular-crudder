@@ -1,54 +1,59 @@
 {
-    "id": "IonicCrudderSchematic",
-    "title": "Ionic Crudder Schematics",
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string",
-            "description": "The name of the instance which represent your object. E.g.:- customer, employee"
-        },
-        "path": {
-            "type": "string",
-            "description": "Specifies the path to create the files under",
-            "default" :""
-        },
-        "spec": {
-            "type": "string",
-            "description": "Specifies if a spec file is generated",
-            "default": "true"
-        },
-        "schemaPath":{
-            "type":"string",
-            "description" :"Specifies the path of schema of which form and template is to be generated"
-        },
-        "changeDetection" : {
-            "type": "string",
-            "description": "Specifies if a change detection property is to be added in component metadata",
-            "default" : "false"
-        },
-        "theme": {
-            "type": "string",
-            "description": "Look and feel of which UI framework E.g, bootstrap,material,etc",
-            "default":"bootstrap"
-        },
-        "project":{
-            "type":"string",
-            "description": "Specifies the project to run the schematic in",
-            "default": "defaultProject"
-        },
-        "module":{
-            "type":"string",
-            "description": "Specifies the module name in which imports are to be added.",
-            "default": "root"
-        },
-        "skipModuleImport":{
-            "type": "string",
-            "description": "Specifies if the module import is to skipped or not",
-            "default" : "false"
-        }
+  "id": "IonicCrudderSchematic",
+  "title": "Ionic Crudder Schematics",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the instance which represent your object. E.g.:- customer, employee"
     },
-    "required": [
-        "name",
-        "schemaPath"
-    ]
+    "path": {
+      "type": "string",
+      "description": "Specifies the path to create the files under",
+      "default": ""
+    },
+    "spec": {
+      "type": "string",
+      "description": "Specifies if a spec file is generated",
+      "default": "true"
+    },
+    "schemaPath": {
+      "type": "string",
+      "description": "Specifies the path of schema of which form and template is to be generated"
+    },
+    "changeDetection": {
+      "type": "string",
+      "description": "Specifies if a change detection property is to be added in component metadata",
+      "default": "true"
+    },
+    "theme": {
+      "type": "string",
+      "description": "Look and feel of which UI framework E.g, bootstrap,material,etc",
+      "default": "bootstrap"
+    },
+    "project": {
+      "type": "string",
+      "description": "Specifies the project to run the schematic in",
+      "default": "defaultProject"
+    },
+    "module": {
+      "type": "string",
+      "description": "Specifies the module name in which imports are to be added.",
+      "default": "root"
+    },
+    "skipModuleImport": {
+      "type": "string",
+      "description": "Specifies if the module import is to skipped or not",
+      "default": "false"
+    },
+    "apiUrl": {
+      "type": "string",
+      "description": "Specifies base url for the http request"
+    },
+    "pluralName": {
+      "type": "string",
+      "description": "Specifies the plural name to be used for the object"
+    }
+  },
+  "required": ["name", "schemaPath"]
 }

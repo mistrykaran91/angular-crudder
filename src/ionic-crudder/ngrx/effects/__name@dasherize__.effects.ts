@@ -14,7 +14,7 @@ import { Store } from '@ngrx/store';
   providedIn: 'root'
 })
 export class <%= classify(name) %>Effects {
-  private <%= camelize(name) %>Url = 'api/<%= camelize(name) %>s';
+  private <%= camelize(name) %>Url = '<%= getAPIUrl(name,apiUrl) %>';
 
   load<%= classify(name) %>$ = createEffect(() =>
     this.actions$.pipe(
@@ -23,7 +23,7 @@ export class <%= classify(name) %>Effects {
         return this.http
           .get<<%= classify(name) %>[]>(`${this.<%= camelize(name) %>Url}`)
           .pipe(
-            map(<%= camelize(name) %>s => <%= classify(name) %>Actions.load<%= classify(name) %>Success({ <%= camelize(name) %>s }))
+            map(<%= getPluralPropertyName(name,pluralName) %> => <%= classify(name) %>Actions.load<%= classify(name) %>Success({ <%= getPluralPropertyName(name,pluralName) %> }))
           );
       })
     )
