@@ -18,7 +18,7 @@ import { <%= classify(name) %> } from '@interfaces/<%= dasherize(name) %>.interf
 })
 export class <%= classify(name) %>Page implements OnInit {
 
-  <%= getPluralPropertyName(name,pluralName) %>$: Observable<Array<<%= classify(name) %>>> = this.store.select(Selectors.get<%= getPluralPropertyName(name,pluralName) %>);
+  <%= getPluralPropertyName(name,pluralName) %>$: Observable<Array<<%= classify(name) %>>> = this.store.select(Selectors.get<%= getPluralPropertyName(name,pluralName,'true') %>);
   is<%= classify(name) %>Empty$: Observable<boolean> = this.store.select(
     Selectors.getIs<%= classify(name) %>Empty
   );  

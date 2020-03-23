@@ -183,8 +183,16 @@ export function getPluralMethod(name: string) {
   return `get${method}s()`;
 }
 
-export function getPluralPropertyName(name: string, pluralName: string) {
-  return pluralName ? pluralName : `${strings.camelize(name)}s`;
+export function getPluralPropertyName(
+  name: string,
+  pluralName: string,
+  capitalize: string
+) {
+  if (pluralName) {
+    return capitalize ? strings.capitalize(pluralName) : pluralName;
+  } else {
+    `${strings.camelize(name)}s`;
+  }
 }
 
 export function getAPIUrl(name: string, api: string) {
