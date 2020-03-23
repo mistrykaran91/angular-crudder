@@ -137,18 +137,10 @@ export function generateIonSelect(key: string) {
 
   const defaultOption = doc.createElement('ion-select-option');
   defaultOption.setAttribute('value', '');
-  defaultOption.innerHTML = '{{ defaultOption }}';
-  defaultOption.innerText = '{{ defaultOption }}';
+  defaultOption.innerHTML = '{{ '' }}';
+  defaultOption.innerText = '{{ '' }}';
 
   select.appendChild(defaultOption);
-
-  const option = doc.createElement('ion-select-option');
-  option.setAttribute(AngularAttribute.NG_VALUE, 'item.id');
-  option.innerHTML = '{{ item?.name }}';
-  option.innerText = '{{ item?.name }}';
-
-  option.setAttribute(AngularAttribute.NG_FOR_LOOP, '');
-  select.appendChild(option);
 
   return select;
 }
