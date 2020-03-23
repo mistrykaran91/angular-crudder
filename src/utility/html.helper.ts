@@ -137,8 +137,8 @@ export function generateIonSelect(key: string) {
 
   const defaultOption = doc.createElement('ion-select-option');
   defaultOption.setAttribute('value', '');
-  defaultOption.innerHTML = '{{ '' }}';
-  defaultOption.innerText = '{{ '' }}';
+  defaultOption.innerHTML = "{{ '' }}";
+  defaultOption.innerText = "{{ '' }}";
 
   select.appendChild(defaultOption);
 
